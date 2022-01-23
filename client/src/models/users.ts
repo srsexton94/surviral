@@ -1,0 +1,1 @@
+export type tempIUsers = { name?: string, game?: unknown }[]
