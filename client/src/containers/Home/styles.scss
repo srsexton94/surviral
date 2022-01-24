@@ -1,4 +1,4 @@
-@import '../../assets/styles/variables.scss';
+@import "assets/styles/variables.scss";
 
 .Home {
   float: right;
@@ -21,26 +21,41 @@
     }
 
     .description {
-      margin: .5rem;
+      margin: 0.5rem;
     }
   }
 
   .menu {
     display: flex;
     justify-content: space-evenly;
-    margin: .75rem;
+    margin: 2rem auto;
 
-    .menu-opt {
+    & > * {
       display: flex;
       justify-content: center;
       max-width: 50%;
+      text-decoration: none;
     }
+
+    .input-field {
+      text-transform: uppercase;
+    }
+  }
+
+  .error {
+    color: $error-red;
+    background-color: rgba($text-color, 0.5);
+    line-height: 2.5rem;
+    text-shadow: none;
+    border-radius: 0.25rem;
+    font-size: 1.125rem;
+    margin-top: 0;
   }
 
   .about-link {
     color: $text-color;
     font-weight: bold;
     text-shadow: $basic-shadow;
-    font-size: .85rem;
+    font-size: 0.85rem;
   }
 }

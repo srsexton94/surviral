@@ -3,16 +3,15 @@ import { Link } from 'react-router-dom'
 
 import apiUrl from 'apiConfig'
 import { Email, GameContent, TeamLog } from 'components'
-import { tempIUsers } from 'models';
-const io = require('socket.io-client');
+import { characterDetails, Characters, ICharacterDetails, tempIUsers } from 'models';
+import { snakeToSentenceCase } from 'helpers';
 
+const io = require('socket.io-client');
 let socket;
 
 export const PlayGame: FC<{ location: Location }> = ({ location }) => {
   const [users, setUsers] = useState([] as tempIUsers)
-  const [title, setTitle] = useState('')
-  const [descrip, setDescrip] = useState('')
-  const ENDPOINT = apiUrl
+  const [character, setCharacter] = useState({ title: '', description: '' } as ICharacterDetails)
 
   function chooseMajor(event: FormEvent) {
     event.preventDefault()
@@ -22,29 +21,7 @@ export const PlayGame: FC<{ location: Location }> = ({ location }) => {
     const profileImg = document.getElementById('profile-img')
     if (profileImg) profileImg.classList.add(major)
 
-    switch(major) {
-      case 'engineering':
-        setTitle('The Engineer')
-        setDescrip('You’ll be responsible for rebuilding a whole new world… Sounds like a lot of work.')
-        break;
-      case 'chemistry':
-        setTitle('The Chemist')
-        setDescrip('Found a vaccine yet? No? Well that baking soda and vinegar volcano is pretty cool too.')
-        break;
-      case 'political-science':
-        setTitle('The PoliSci Guy')
-        setDescrip('Down with the government! Anarchy!')
-        break;
-      case 'business':
-        setTitle('Business Lady')
-        setDescrip('You briefly reflect on if capitalism might be to blame for all of this death and despair… Nah, it’s Millennials’ fault.')
-        break;
-      case 'photography':
-        setTitle('The Photographer')
-        setDescrip('At least when the world burns, you won’t have to figure out how to pay back all that college debt.')
-        break;
-      default:
-    }
+    setCharacter(characterDetails[major as Characters])
 
     const [playerProfile, letsPlay, charChoice] = ['player-profile', 'lets-play', 'char-choice'].map(id => document.getElementById(id))
     if (playerProfile) playerProfile.style.display = 'block'
@@ -54,43 +31,39 @@ export const PlayGame: FC<{ location: Location }> = ({ location }) => {
 
   useEffect(() => {
     const game = location.search.substring(6, 10)
-
-    socket = io(ENDPOINT)
-
+    socket = io(apiUrl)
     socket.on('roomData', ({ users }: { users: tempIUsers }) => {
       setUsers(users.filter(user => user.game === game))
     })
-  }, [location, ENDPOINT]);
+  }, [location]);
 
   return (
-    <section className="Play-Game">
+    <main className="Play-Game">
       <Email />
       <Link to="/">
         <button className="admin-button">X</button>
       </Link>
-      <main>
+      <section>
         <TeamLog users={users} />
         <GameContent />
-        <form id="char-choice" onSubmit={chooseMajor} className="char-choice">
-          <p>Welp. Not the semester you imagined... but you still gotta study.
-           <br/><span>What's your major?</span></p>
+        <form id="char-choice" className="char-choice" onSubmit={chooseMajor}>
+          <h1>Welp. Not the semester you imagined... but you still gotta study.</h1>
           <select id="majors" name="majors">
-            <option value="engineering">Engineering</option>
-            <option value="chemistry">Chemistry</option>
-            <option value="political-science">Political Science</option>
-            <option value="business">Business</option>
-            <option value="photography">Photography</option>
+            <legend>What's your major?</legend>
+            {Characters && Object.values(Characters).map((character, i) => (
+              <option key={i} value={character}>{snakeToSentenceCase(character)}</option>
+            ))}
           </select>
           <input type="submit"></input>
         </form>
         <section id="player-profile" className="player-profile">
-          <img id="profile-img" src="" alt="" />
+          <img id="profile-img" src="" alt="" aria-hidden />
           <section className="char-descrip">
-            <h3>{title}</h3>
-            <p>{descrip}</p>
+            <h3>{character.title}</h3>
+            <p>{character.description}</p>
           </section>
         </section>
-      </main>
-    </section>
+      </section>
+    </main>
   )
 }

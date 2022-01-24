@@ -1,16 +1,20 @@
-import { Routes } from 'models/routes'
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import React, { FormEvent, useState } from 'react';
+import { Link } from 'react-router-dom';
 
+import { Routes } from 'models/routes';
 import './styles.scss'
+import { getRandomId } from 'helpers';
 
 export function Home() {
-  const [gameId, setGameId] = useState('')
+  const errorId = 'gameIdError'
+  const [gameId, setGameId] = useState('');
+  const [hasJoinError, setHasJoinError] = useState(false);
 
-  useEffect(() => {
-    const randomizedID = Math.random().toString(36).substring(2, 6).toUpperCase()
-    setGameId(randomizedID)
-  }, [])
+  const onGameIdChange = (event: FormEvent) => {
+    const { value } = event.target as HTMLInputElement;
+    setGameId(value)
+    setHasJoinError(value.length < 4)
+  }
 
   return (
     <main className="Home">
@@ -24,23 +28,25 @@ export function Home() {
         </p>
       </div>
       <div className="menu">
-        <Link className="menu-opt" to={`${Routes.SETUP}?game=${gameId}/host/`}>
+        <Link to={`${Routes.SETUP}?game=${getRandomId()}/host/`}>
           <button className="admin-button">New Game</button>
         </Link>
-        <form className="menu-opt">
+        <form>
           <input
             className="input-field"
+            aria-describedby={hasJoinError ? errorId : undefined}
             type="text"
-            onChange={(event) => setGameId(event.target.value)}
+            onChange={onGameIdChange}
           />
           <Link
-            onClick={event => (!gameId) ? event.preventDefault() : null}
-            to={`${Routes.SETUP}?game=${gameId}`}
+            onClick={() => setHasJoinError(gameId.length < 4)}
+            to={gameId.length === 4 ? `${Routes.SETUP}?game=${gameId}`: '#'}
           >
             <input className="admin-button" type="submit" value="Join Game"/>
           </Link>
         </form>
       </div>
+      {hasJoinError && <p id={errorId} className="error">Please enter a valid game ID or select 'New Game'</p>}
       <Link className="about-link" to="/about">About This Project</Link>
     </main>
   )
