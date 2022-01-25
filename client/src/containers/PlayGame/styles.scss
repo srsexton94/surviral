@@ -8,8 +8,9 @@
   border-radius: 1rem;
   box-shadow: $basic-shadow;
   margin: 2rem auto;
+  min-height: 75vh;
   width: 85rem;
-
+  max-width: 90vw;
 
   .admin-button {
     background-color: rgba($gray-fill, 0.85);

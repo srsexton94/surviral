@@ -3,10 +3,10 @@
 .game-content {
   height: 60vh;
   margin-top: 2vh;
-  width: 95vw;
+  width: 100%;
 
   button,
-  input {
+  input[type="submit"] {
     background-color: rgba(0, 0, 0, 0);
     border: 1px solid $text-color;
     border-radius: 8px;
@@ -39,76 +39,6 @@
 
     li {
       margin-bottom: 1rem;
-    }
-  }
-
-  #sassy-modal {
-    background-color: rgba($gray-fill, .95);
-    border-radius: 15px;
-    height: 100%;
-    position: absolute;
-    width: 100%;
-    margin: 0;
-    left: 0;
-    top: 0;
-    z-index: 2;
-    display: none;
-
-    .sass {
-      margin: 15vh auto 0;
-      height: 30vh;
-      width: 35rem;
-      max-width: 95vw;
-      font-size: 1.5rem;
-    }
-
-    .glow {
-      margin: 30vh auto 0;
-    }
-  }
-
-  #lets-play {
-    margin: 15vh auto 0;
-    display: none;
-    width: 25rem;
-    font-size: 2rem;
-
-    p {
-      text-align: center;
-    }
-  }
-
-  #game-content {
-    margin: 10vh auto 0;
-    width: 80vw;
-    min-width: 26rem;
-    text-align: left;
-    display: none;
-    height: 40vh;
-
-    select {
-      border-radius: 10px;
-      font-size: 1.25rem;
-      height: 2rem;
-      width: 4rem;
-    }
-
-    #game-content-form {
-      float: right;
-    }
-  }
-
-  #final-view {
-    margin: 25vh 0;
-    display: none;
-    button {
-      position: relative;
-      margin: auto;
-      width: 20rem;
-      max-width: 90vw;
-      height: 10rem;
-      font-size: 2.5rem;
-      font-family: $title-font;
     }
   }
 }

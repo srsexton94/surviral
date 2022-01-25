@@ -1,9 +1,13 @@
+import React, { FC, useEffect } from "react";
 import { ICharacterDetails } from "models";
-import React, { FC } from "react";
-
 import "./styles.scss";
 
 export const PlayerProfile: FC<{ character: ICharacterDetails }> = ({ character }) => {
+  
+  useEffect(() => {
+    console.log({ character })
+  }, [character]);
+  
   return (
     <section className="player-profile">
       <img src={character.image} alt="" aria-hidden />

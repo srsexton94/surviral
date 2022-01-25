@@ -1,0 +1,15 @@
+@import 'assets/styles/variables.scss';
+
+.final-screen {
+  margin: 25vh 0;
+
+  button {
+    position: relative;
+    margin: auto;
+    width: 20rem;
+    max-width: 90vw;
+    height: 10rem;
+    font-size: 2.5rem;
+    font-family: $title-font;
+  }
+}

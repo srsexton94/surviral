@@ -1,0 +1,30 @@
+@import 'assets/styles/variables.scss';
+
+.game-slides {
+  margin: 10vh auto 0;
+  width: 80%;
+  text-align: left;
+  height: 40vh;
+
+  .list {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 2rem 1rem;
+    justify-content: space-around;
+    max-height: 50%;
+    overflow-y: scroll;
+  }
+
+  form {
+    display: flex;
+    flex-flow: column;
+    align-items: flex-end;
+
+    select {
+      width: 8rem;
+      height: 2rem;
+      border-radius: .25rem;
+      margin: .5rem 0;
+    }
+  }
+}

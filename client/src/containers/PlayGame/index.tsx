@@ -3,22 +3,18 @@ import { Link } from "react-router-dom";
 
 import apiUrl from "apiConfig";
 import { Email, GameContent, MajorChoice, PlayerProfile, TeamLog } from "components";
-import {
-  characterDetails,
-  Majors,
-  ICharacterDetails,
-  tempIUsers,
-} from "models";
+import { characterDetails, Majors,  IUser } from "models";
 import "./styles.scss";
 
 const io = require("socket.io-client");
 let socket;
 
 export const PlayGame: FC<{ location: Location }> = ({ location }) => {
-  const [users, setUsers] = useState([] as tempIUsers);
-  const [character, setCharacter] = useState({} as ICharacterDetails);
+  const [users, setUsers] = useState([] as IUser[]);
+  const [game, setGame] = useState('')
+  const [character, setCharacter] = useState(characterDetails.engineering);
   const [isSubmitted, setIsSubmitted] = useState(false)
-  const [isEmailOpen, setIsEmailOpen] = useState(true)
+  const [isEmailOpen, setIsEmailOpen] = useState(false) // TODO: switch back!
 
   function handleMajorChange(event: ChangeEvent) {
     const { value } = event.target as HTMLSelectElement
@@ -27,8 +23,10 @@ export const PlayGame: FC<{ location: Location }> = ({ location }) => {
 
   useEffect(() => {
     const game = location.search.substring(6, 10);
+    setGame(game)
+
     socket = io(apiUrl);
-    socket.on("roomData", ({ users }: { users: tempIUsers }) => {
+    socket.on("roomData", ({ users }: { users: IUser[] }) => {
       setUsers(users.filter((user) => user.game === game));
     });
   }, [location]);
@@ -42,9 +40,11 @@ export const PlayGame: FC<{ location: Location }> = ({ location }) => {
       {!isEmailOpen && (
         <section>
           <TeamLog users={users} />
-          <GameContent />
           {isSubmitted
-            ? <PlayerProfile character={character} />
+            ? (<>
+              <GameContent game={game} />
+              <PlayerProfile character={character} />
+            </>)
             : <MajorChoice onMajorChange={handleMajorChange} onSubmit={() => setIsSubmitted(true)} />
           }
         </section>

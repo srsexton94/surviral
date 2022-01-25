@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
-import { tempIUsers } from 'models';
+import { IUser } from 'models';
 
-export const PlayerList: FC<{ users: tempIUsers }> = ({ users }) => (
+export const PlayerList: FC<{ users: IUser[] }> = ({ users }) => (
   <section className="Player-List">
     { 
       users.length > 0
@@ -15,4 +15,3 @@ export const PlayerList: FC<{ users: tempIUsers }> = ({ users }) => (
     }
   </section>
 );
-

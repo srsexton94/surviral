@@ -4,15 +4,15 @@
     float: right;
 
     .toggle-button {
-      position: relative;
-      bottom: 1.5rem;
-      right: .5rem;
+      position: absolute;
+      top: 0;
+      left: 75%;
       border: 5px solid $red-text;
       background-color: rgba($red-text, .75);
       border-radius: 10px;
       height: 4rem;
       width: 22rem;
-      max-width: 90vw;
+      max-width: 75vw;
       font-family: $title-font;
       font-size: 2rem;
       text-align: left;
@@ -28,32 +28,37 @@
       }
     }
 
-    ul {
+    .team-list {
+      position: absolute;
+      top: 3rem;
+      left: 64rem;
       background-color: rgba($red-text, .5);
-      border-bottom-right-radius: 15px;
-      border-bottom-left-radius: 15px;
-      display: none;
-      height: 25rem;
-      max-height: 55vh;
-      margin: auto;
-      margin-top: -3rem;
-      width: 18rem;
-      max-width: 88vw;
+      border-bottom-right-radius: 1rem;
+      border-bottom-left-radius: 1rem;
+      width: 18.5rem;
+      min-height: 4rem;
+      text-align: left;
+      padding: .5rem 1rem;
 
       li {
+        display: flex;
+        justify-content: space-between;
         list-style: none;
-        font-size: 1.5rem;
-        padding-top: 5vh;
-        padding-left: 0;
-        margin-left: -2rem;
+        font-size: 1.125rem;
 
-        &:before {
-          content: '';
-          display: inline-block;
-          height: 30px;
-          width: 30px;
-          margin-right: 1rem;
-          // background-image: url('assets/images/controller.png');
+        .team-member {
+          display: flex;
+          align-items: center;
+  
+          img {
+            margin-right: 1rem;
+          }
+
+          span {
+            font-size: .75rem;
+            margin-left: .25rem;
+            color: gray;
+          }
         }
       }
     }

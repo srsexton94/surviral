@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import apiUrl from 'apiConfig';
 import { PlayerList } from 'components';
-import { ISocket, tempIUsers } from 'models';
+import { ISocket, IUser } from 'models';
 import './styles.scss';
 
 const io = require('socket.io-client');
@@ -18,7 +18,7 @@ export const SetPlayer: FC<{ location: Location }> = ({ location }) => {
   const [formId, inputId, errorId] = ['username-form', 'username-input', 'username-error']
   const [name, setName] = useState('')
   const [game, setGame] = useState('')
-  const [users, setUsers] = useState([] as tempIUsers)
+  const [users, setUsers] = useState([] as IUser[])
   const [userMessage, setUserMessage] = useState('')
   const [error, setError] = useState('')
   const [isUserSubmitted, setIsUserSubmitted] = useState(false)
@@ -55,7 +55,7 @@ export const SetPlayer: FC<{ location: Location }> = ({ location }) => {
     socket.on('message', (res: { text: string }) => {
       setUserMessage(res.text)
     })
-    socket.on('roomData', ({ users }: { users: tempIUsers }) => {
+    socket.on('roomData', ({ users }: { users: IUser[] }) => {
       setUsers(users.filter(user => user.game === game))
     })
   }, [userMessage, location]);

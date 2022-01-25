@@ -1,0 +1,17 @@
+@import 'assets/styles/variables.scss';
+
+.sassy-modal {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba($gray-fill, .95);
+  border-radius: 1rem;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  left: 0;
+  top: 0;
+  z-index: 2;
+}

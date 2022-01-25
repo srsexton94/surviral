@@ -1,15 +1,15 @@
 @import 'assets/styles/variables.scss';
 
 .player-profile {
-  display: none;
   background-color: rgba($med-gray-fill, .9);
   border: 1px solid $med-gray-fill;
-  border-radius: 15px;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
   bottom: 0;
   height: 9rem;
   position: absolute;
   padding-bottom: 2vh;
-  width: 94.75vw;
+  width: 99.8%;
 
   img {
     background-size: contain;
