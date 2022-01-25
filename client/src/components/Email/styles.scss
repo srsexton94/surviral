@@ -1,0 +1,94 @@
+.email-container {
+  height: 100%;
+  width: 100%;
+
+  .email {
+    background-color: white;
+    border-radius: 0.25rem;
+    width: 50rem;
+    max-width: 80vw;
+    margin: 1rem auto;
+    padding: .5rem 1rem 3rem;
+    color: black;
+    text-align: left;
+    font-family: Arial, sans-serif;
+
+    .title {
+      font-size: 1rem;
+      font-weight: bolder;
+    }
+
+    .header {
+      color: #666;
+      font-size: .75rem;
+      margin: 0 3rem;
+      max-height: 3rem;
+
+      p {
+        margin: .125rem;
+
+        &:first-child {
+          font-weight: bold;
+          font-size: .875rem;
+        }
+      }
+
+      &::after {
+        content: "OP";
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        right: 3rem;
+        bottom: 3rem;
+        font-size: 1rem;
+        color: white;
+        background-color: navy;
+        height: 2.5rem;
+        width: 2.5rem;
+        border-radius: 50%;
+      }
+    }
+
+    .body {
+      padding-left: 1rem;
+
+      img {
+        max-width: 100%;
+        margin-top: .5rem;
+      }
+
+      p:last-child {
+        font-size: .75rem;
+        margin: 0;
+      }
+    }
+
+    .options-set {
+      display: flex;
+      justify-content: space-around;
+      width: 25rem;
+      max-width: 80%;
+      margin: 1rem;
+
+      button {
+        border: 1px solid #aaa;
+        border-radius: .225rem;
+        background-color: transparent;
+        padding: .75rem 1rem;
+        cursor: pointer;
+
+        &[disabled] {
+          background-color: lightgray;
+        }
+
+        &:last-child:hover,
+        &:last-child:active {
+          background-color: #666;
+          color: white;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}

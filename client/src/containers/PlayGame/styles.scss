@@ -18,7 +18,7 @@
     position: absolute;
     left: .5rem;
     height: 2rem;
-    width: 2rem;
+    width: 3rem;
   }
 
   .game-content {
@@ -157,35 +157,17 @@
       min-width: 11rem;
     }
 
-    // .engineering {
-    //   background-image: url('assets/images/humans/engineer.png');
-    // }
-
-    // .chemistry {
-    //   background-image: url('assets/images/humans/chemist.png');
-    // }
-
-    // .political-science {
-    //   background-image: url('assets/images/humans/polisci.png');
-    // }
-
-    // .business {
-    //   background-image: url('assets/images/humans/business.png');
-    // }
-
-    // .photography {
-    //   background-image: url('assets/images/humans/photog.png');
-    // }
-
     .char-descrip {
       float: left;
       text-align: left;
+
       h3 {
         font-size: 2.5rem;
         font-weight: bold;
         text-shadow: $basic-shadow;
         margin: -3rem 0 0 1rem;
       }
+      
       p {
         float: left;
         width: 25rem;
@@ -306,23 +288,6 @@
           // background-image: url('assets/images/controller.png');
         }
       }
-    }
-  }
-
-  .Email {
-    background-color: rgba($gray-fill, .95);
-    height: 100vh;
-    position: absolute;
-    width: 100vw;
-    margin: 0;
-    left: 0;
-    top: 0;
-    z-index: 3;
-
-    div {
-      // background: url('assets/images/email-graphic.png') no-repeat center center scroll;
-      background-size: contain;
-      height: 98vh;
     }
   }
 }
