@@ -36,8 +36,10 @@ export function About() {
         </p>
       </section>
       <section>
-        { renderLinkList(AboutLinks.CODE) }
-        { renderLinkList(AboutLinks.CONTRIBUTE) }
+        <div className="project-link-container">
+          { renderLinkList(AboutLinks.CODE) }
+          { renderLinkList(AboutLinks.CONTRIBUTE) }
+        </div>
         <p className="description">
           This project was originally built in a weekend hackathon hosted by  
           {mintbeanLink && 

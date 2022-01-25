@@ -12,7 +12,7 @@
     width: 95vw;
     position: relative;
   }
-  // 'X' out button (ie. to game-over nav)
+
   .admin-button {
     background-color: rgba($gray-fill, 0.85);
     position: absolute;
@@ -157,25 +157,25 @@
       min-width: 11rem;
     }
 
-    .engineering {
-      background-image: url('./assets/images/humans/engineer.png');
-    }
+    // .engineering {
+    //   background-image: url('assets/images/humans/engineer.png');
+    // }
 
-    .chemistry {
-      background-image: url('./assets/images/humans/chemist.png');
-    }
+    // .chemistry {
+    //   background-image: url('assets/images/humans/chemist.png');
+    // }
 
-    .political-science {
-      background-image: url('./assets/images/humans/polisci.png');
-    }
+    // .political-science {
+    //   background-image: url('assets/images/humans/polisci.png');
+    // }
 
-    .business {
-      background-image: url('./assets/images/humans/business.png');
-    }
+    // .business {
+    //   background-image: url('assets/images/humans/business.png');
+    // }
 
-    .photography {
-      background-image: url('./assets/images/humans/photog.png');
-    }
+    // .photography {
+    //   background-image: url('assets/images/humans/photog.png');
+    // }
 
     .char-descrip {
       float: left;
@@ -303,7 +303,7 @@
           height: 30px;
           width: 30px;
           margin-right: 1rem;
-          background-image: url('./assets/images/controller.png');
+          // background-image: url('assets/images/controller.png');
         }
       }
     }
@@ -320,7 +320,7 @@
     z-index: 3;
 
     div {
-      background: url('./assets/images/email-graphic.png') no-repeat center center scroll;
+      // background: url('assets/images/email-graphic.png') no-repeat center center scroll;
       background-size: contain;
       height: 98vh;
     }

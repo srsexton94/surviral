@@ -5,6 +5,7 @@ import apiUrl from 'apiConfig'
 import { Email, GameContent, TeamLog } from 'components'
 import { characterDetails, Characters, ICharacterDetails, tempIUsers } from 'models';
 import { snakeToSentenceCase } from 'helpers';
+import './styles.scss';
 
 const io = require('socket.io-client');
 let socket;

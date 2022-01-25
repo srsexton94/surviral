@@ -21,23 +21,30 @@ export const SetPlayer: FC<{ location: Location }> = ({ location }) => {
   const [users, setUsers] = useState([] as tempIUsers)
   const [userMessage, setUserMessage] = useState('')
   const [error, setError] = useState('')
-  const [isNameSubmitted, setIsNameSubmitted] = useState(false);
+  const [isUserSubmitted, setIsUserSubmitted] = useState(false)
 
-  function joinUserToGame(event: FormEvent) {
-    event.preventDefault()
-    const { value } = event.target as HTMLFormElement
-    const hasError = users.length >= 5 || !name;
+  function joinUserToGame() {
+    const newUser = { name, game }
+    setError('')
+    setUsers([...users, newUser])
+    setIsUserSubmitted(true)
 
-    if (hasError) setError(!name ? setupErrors.noName : setupErrors.tooManyPlayers)
-    else {
-      setName(value)
-      socket.emit('join', { name, game }, () => {})
-      return () => {
-        socket.emit('disconnect')
-        socket.off()
-      }
+    socket.emit('join', newUser, () => {})
+    return () => {
+      socket.emit('disconnect')
+      socket.off()
     }
-    setIsNameSubmitted(true);
+  }
+
+  function handleNameSubmit(event: FormEvent) {
+    event.preventDefault()
+    const [tooManyPlayers, invalidName] = [users?.length === 5, !name || name.length < 2]
+
+    if (tooManyPlayers || invalidName) {
+      setError(invalidName ? setupErrors.noName : setupErrors.tooManyPlayers)
+    } else {
+      return joinUserToGame()
+    }
   }
 
   useEffect(() => {
@@ -56,16 +63,23 @@ export const SetPlayer: FC<{ location: Location }> = ({ location }) => {
   return (
     <section className="Set-Player">
       <h1 className="gameid-mark">Your Game ID is: {game}</h1>
-      {!isNameSubmitted && <form id={formId} onSubmit={joinUserToGame}>
-        <label className="input-label" htmlFor={inputId}>Choose a Name</label>
-        <input id={inputId} className="input-field" type="text" aria-describedby={error ? errorId : undefined} />
-        {error && <p id={errorId} className='error-message'>{error}</p>}
-        <button className="admin-button" type="submit">That's me!</button>
-      </form>}
-      {isNameSubmitted && <p className="user-message-txt">{userMessage}</p>}
+      {!isUserSubmitted && 
+        <form id={formId} onSubmit={handleNameSubmit}>
+          <label className="input-label" htmlFor={inputId}>Choose a Name</label>
+          <input 
+            id={inputId} 
+            className="input-field" 
+            type="text" 
+            aria-describedby={error ? errorId : undefined} 
+            onChange={({ target }) => setName(target.value)}
+          />
+          {error && <p id={errorId} className='error-message'>{error}</p>}
+          <button className="admin-button" type="submit">That's me!</button>
+        </form>
+      }
       <PlayerList users={users} />
-      {isNameSubmitted && <Link to={`/play?game=${game}&name=${name}`}>
-        <button id="all-ready" className="admin-button">{users.length ? "We're" : "I'm"} ready!</button>
+      {isUserSubmitted && <Link to={`/play?game=${game}&name=${name}`}>
+        <button id="all-ready" className="admin-button">{users.length > 1 ? "We're" : "I'm"} ready!</button>
       </Link>}
     </section>
   )

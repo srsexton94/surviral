@@ -12,8 +12,8 @@ export function Home() {
 
   const onGameIdChange = (event: FormEvent) => {
     const { value } = event.target as HTMLInputElement;
-    setGameId(value)
-    setHasJoinError(value.length < 4)
+    setGameId(value.toUpperCase())
+    if (hasJoinError) setHasJoinError(value.length !== 4)
   }
 
   return (
@@ -21,8 +21,8 @@ export function Home() {
       <div className="intro">
         <h1 className="title">Sur<span>Viral</span></h1>
         <p className="description">
-          Your university's abandoned you..<br/>
-          a virus is on the loose..<br/>
+          Your university's abandoned you...<br/>
+          a virus is on the loose...<br/>
           and your friends are all you have<br/><br/>
           <em>Do you have what it takes to make it out alive?</em>
         </p>
@@ -39,7 +39,7 @@ export function Home() {
             onChange={onGameIdChange}
           />
           <Link
-            onClick={() => setHasJoinError(gameId.length < 4)}
+            onClick={() => setHasJoinError(gameId.length !== 4)}
             to={gameId.length === 4 ? `${Routes.SETUP}?game=${gameId}`: '#'}
           >
             <input className="admin-button" type="submit" value="Join Game"/>

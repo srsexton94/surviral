@@ -15,26 +15,36 @@
     border: 0.5rem solid $red-text;
     border-radius: 1rem;
     width: 25rem;
+    max-width: 75vw;
     margin: 1rem auto;
     padding: 1rem;
     text-shadow: .0625rem .095rem .0625rem rgba($gray-fill, 0.6);
   }
 
-  .project-links {
-    width: 15rem;
-    display: inline-block;
-    margin-bottom: 2rem;
+  .project-link-container {
+    display: flex;
+    flex-flow: row wrap;
+    width: 35rem;
+    max-width: 90vw;
+    justify-content: center;
+    margin: auto;
 
-    .link-list {
-      list-style: none;
-      width: 50%;
-      margin-left: 1.25rem;
+    .project-links {
+      width: 17rem;
+      display: inline-block;
+      margin-bottom: 2rem;
 
-      .link,
-      .link:visited {
-        display: block;
-        color: $text-color;
-        margin-bottom: .5rem;
+      .link-list {
+        list-style: none;
+        width: 50%;
+        margin-left: 1.25rem;
+
+        .link,
+        .link:visited {
+          display: block;
+          color: $text-color;
+          margin-bottom: .5rem;
+        }
       }
     }
   }

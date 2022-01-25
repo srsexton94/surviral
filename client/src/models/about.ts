@@ -14,12 +14,17 @@ export enum AboutLinks {
 export const aboutLinks: ILink[] = [
   {
     category: AboutLinks.CODE,
-    text: 'Client Repo',
+    text: 'Current Repo',
     url: 'https://github.com/connietran-dev/janebox-surviral-client'
   },
   {
     category: AboutLinks.CODE,
-    text: 'Server Repo',
+    text: 'Old Client Repo',
+    url: 'https://github.com/connietran-dev/janebox-surviral-client'
+  },
+  {
+    category: AboutLinks.CODE,
+    text: 'Old Server Repo',
     url: 'https://github.com/connietran-dev/janebox-surviral-server'
   },
   {
