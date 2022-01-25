@@ -2,6 +2,7 @@ import React, { FormEvent, MouseEvent, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import { IChoice, slides } from 'models'
+import './styles.scss'
 
 export const GameContent = () => {
   const [index, setIndex] = useState(0)

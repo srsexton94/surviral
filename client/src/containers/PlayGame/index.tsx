@@ -2,8 +2,7 @@ import React, { ChangeEvent, FC, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import apiUrl from "apiConfig";
-import { Email, GameContent, TeamLog } from "components";
-import { snakeToSentenceCase } from "helpers";
+import { Email, GameContent, MajorChoice, PlayerProfile, TeamLog } from "components";
 import {
   characterDetails,
   Majors,
@@ -44,31 +43,9 @@ export const PlayGame: FC<{ location: Location }> = ({ location }) => {
         <section>
           <TeamLog users={users} />
           <GameContent />
-          {!isSubmitted &&
-            <form id="char-choice" className="char-choice" onSubmit={() => setIsSubmitted(true)}>
-              <h1>
-                Welp. Not the semester you imagined... but you still gotta study.
-              </h1>
-              <label htmlFor="majors">What's your major?</label>
-              <select id="majors" name="majors" onChange={handleMajorChange}>
-                {Majors &&
-                  Object.values(Majors).map((character, i) => (
-                    <option key={i} value={character}>
-                      {snakeToSentenceCase(character)}
-                    </option>
-                  ))}
-              </select>
-              <input type="submit"></input>
-            </form>
-          }
-          {isSubmitted && 
-            <section className="player-profile">
-              <img src={character.image} alt="" aria-hidden />
-              <section className="char-descrip">
-                <h3>{character.title}</h3>
-                <p>{character.description}</p>
-              </section>
-            </section>
+          {isSubmitted
+            ? <PlayerProfile character={character} />
+            : <MajorChoice onMajorChange={handleMajorChange} onSubmit={() => setIsSubmitted(true)} />
           }
         </section>
       )}

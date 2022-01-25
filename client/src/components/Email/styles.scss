@@ -82,11 +82,14 @@
           background-color: lightgray;
         }
 
-        &:last-child:hover,
-        &:last-child:active {
-          background-color: #666;
-          color: white;
-          font-weight: 700;
+        &:last-child {
+          border-width: .125rem;
+          &:hover,
+          &:active {
+            background-color: #666;
+            color: white;
+            font-weight: 700;
+          }
         }
       }
     }
